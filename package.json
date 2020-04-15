@@ -1,7 +1,7 @@
 {
-  "name": "frontend_library_template",
+  "name": "javascript-library-Boilerplate",
   "version": "0.1.0",
-  "description": "Frontend Library Template",
+  "description": "Build your Javascript library without hassle",
   "main": "./src/index.js",
   "scripts": {
     "build": "rollup -c",
@@ -10,6 +10,12 @@
     "test": "cross-env COVERAGE=true yarn karma start",
     "test:open": "cross-env COVERAGE=true yarn karma start --open"
   },
+  "keywords": [
+    "boilerplate",
+    "template",
+    "javascript",
+    "library"
+  ],
   "author": "Adam Sherwood <adam.the.sherwood@gmail.com>",
   "license": "MIT",
   "devDependencies": {
