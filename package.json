@@ -24,7 +24,7 @@
   "config": {
     "ghooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test:single",
+      "pre-push": "npm run test:once",
       "post-merge": "npm install",
       "post-rewrite": "npm install"
     }
