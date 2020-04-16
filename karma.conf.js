@@ -8,8 +8,13 @@ const minimist = require('minimist');
 const c = require('ansi-colors');
 
 const argv = minimist(process.argv.slice(2));
-const coverage = false;
-const sauceLabs = false;
+var coverage = String(process.env.COVERAGE) === 'true',
+  ci = String(process.env.CI).match(/^(1|true)$/gi),
+  pullRequest = !String(process.env.TRAVIS_PULL_REQUEST).match(
+    /^(0|false|undefined)$/gi
+  ),
+  masterBranch = String(process.env.TRAVIS_BRANCH).match(/^master$/gi),
+  sauceLabs = ci && !pullRequest && masterBranch;
 
 var sauceLabsLaunchers = {
   sl_chrome: {
@@ -66,20 +71,20 @@ module.exports = function (config) {
 
     customLaunchers: sauceLabs ? sauceLabsLaunchers : localLaunchers,
 
-    // sauceLabs: {
-    //   build:
-    //     'CI #' +
-    //     process.env.TRAVIS_BUILD_NUMBER +
-    //     ' (' +
-    //     process.env.TRAVIS_BUILD_ID +
-    //     ')',
-    //   tunnelIdentifier:
-    //     process.env.TRAVIS_JOB_NUMBER ||
-    //     'local' + require('./package.json').version,
-    //   connectLocationForSERelay: 'localhost',
-    //   connectPortForSERelay: 4445,
-    //   startConnect: false,
-    // },
+    sauceLabs: {
+      build:
+        'CI #' +
+        process.env.TRAVIS_BUILD_NUMBER +
+        ' (' +
+        process.env.TRAVIS_BUILD_ID +
+        ')',
+      tunnelIdentifier:
+        process.env.TRAVIS_JOB_NUMBER ||
+        'local' + require('./package.json').version,
+      connectLocationForSERelay: 'localhost',
+      connectPortForSERelay: 4445,
+      startConnect: false,
+    },
 
     // browserLogOptions: { terminal: true },
     // browserConsoleLogOptions: { terminal: true },
@@ -134,13 +139,13 @@ module.exports = function (config) {
     files: [
       'https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.dataset%2CArray.from',
       {
-        pattern: config.grep || 'src/**/*.js',
+        pattern: config.grep || 'test/**/*.js',
         watched: false,
       },
     ],
 
     preprocessors: {
-      'src/**/*.js': ['rollup'],
+      'test/**/*.js': ['rollup'],
     },
 
     rollupPreprocessor: {
