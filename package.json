@@ -11,7 +11,7 @@
     "prepublishOnly": "rollup -c",
     "test": "cross-env COVERAGE=true yarn karma start",
     "test:open": "cross-env COVERAGE=true yarn karma start --open",
-    "test:single": "cross-env COVERAGE=true yarn karma start --single-run",
+    "test:once": "cross-env COVERAGE=true yarn karma start --single-run",
     "docs": "node scripts/docs.js && yarn format:docs",
     "format:docs": "prettier --write '**/*.md'"
   },
