@@ -6,11 +6,11 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 
 export default [
   {
-    input: './src/index.js',
+    input: 'src/index.js',
     output: [
       {
         file: 'dist/min.js',
-        name: '',
+        name: 'test_library',
         format: 'iife',
         globals: {},
         compact: true,
