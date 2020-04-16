@@ -11,6 +11,7 @@
     "prepublishOnly": "rollup -c",
     "test": "cross-env COVERAGE=true yarn karma start",
     "test:open": "cross-env COVERAGE=true yarn karma start --open",
+    "test:single": "cross-env COVERAGE=true yarn karma start --single-run",
     "docs": "node scripts/docs.js && yarn format:docs",
     "format:docs": "prettier --write '**/*.md'"
   },
@@ -23,7 +24,7 @@
   "config": {
     "ghooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test",
+      "pre-push": "npm run test:single",
       "post-merge": "npm install",
       "post-rewrite": "npm install"
     }
