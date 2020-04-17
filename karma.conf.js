@@ -14,7 +14,8 @@ var coverage = String(process.env.COVERAGE) === 'true',
     /^(0|false|undefined)$/gi
   ),
   masterBranch = String(process.env.TRAVIS_BRANCH).match(/^master$/gi),
-  sauceLabs = ci && !pullRequest && masterBranch;
+  // Get a Sauce Labs account and remove the `false`
+  sauceLabs = false && ci && !pullRequest && masterBranch;
 
 var sauceLabsLaunchers = {
   sl_chrome: {
