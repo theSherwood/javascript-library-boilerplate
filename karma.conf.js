@@ -16,8 +16,6 @@ var coverage = String(process.env.COVERAGE) === 'true',
   masterBranch = String(process.env.TRAVIS_BRANCH).match(/^master$/gi),
   sauceLabs = ci && !pullRequest && masterBranch;
 
-console.log(coverage, ci, pullRequest, masterBranch, sauceLabs)
-
 var sauceLabsLaunchers = {
   sl_chrome: {
     base: 'SauceLabs',
@@ -105,7 +103,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DISABLE,
+    logLevel: config.LOG_DEBUG,
 
     client: { captureConsole: !!argv.console },
 
