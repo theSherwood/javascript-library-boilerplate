@@ -1,0 +1,46 @@
+sudo: true
+
+language: node_js
+
+node_js:
+  - "12.13.1"
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+# As --depth implies --single-branch, removing this flag means that all branches will be checked out
+git:
+  depth: false
+
+# Make chrome browser available for testing
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+services:
+  - xvfb
+
+install:
+  - yarn
+
+addons:
+  chrome: stable
+  sauce_connect: true
+
+jobs:
+  include:
+    - stage: tests
+      name: "Unit tests"
+      script: COVERAGE=true yarn karma start --single-run
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+        keep_history: true
+        on:
+          branch: master
+
+after_success:
+  - yarn run coverage
