@@ -16,6 +16,8 @@ var coverage = String(process.env.COVERAGE) === 'true',
   masterBranch = String(process.env.TRAVIS_BRANCH).match(/^master$/gi),
   sauceLabs = ci && !pullRequest && masterBranch;
 
+console.log(coverage, ci, pullRequest, masterBranch, sauceLabs)
+
 var sauceLabsLaunchers = {
   sl_chrome: {
     base: 'SauceLabs',

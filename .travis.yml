@@ -33,7 +33,7 @@ jobs:
   include:
     - stage: tests
       name: "Unit tests"
-      script: COVERAGE=true yarn test --single-run
+      script: COVERAGE=true yarn karma start --single-run
       deploy:
         provider: pages
         skip_cleanup: true
