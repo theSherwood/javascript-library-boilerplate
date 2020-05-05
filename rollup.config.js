@@ -7,6 +7,8 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 export default [
   {
     input: 'src/index.js',
+    plugins: [sourcemaps(), nodeResolve()],
+    external: [],
     output: [
       {
         file: 'dist/min.js',
@@ -18,8 +20,6 @@ export default [
           bundleSize({
             columnWidth: 25,
           }),
-          sourcemaps(),
-          nodeResolve(),
           terser({
             compress: {
               passes: 2,
