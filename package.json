@@ -60,7 +60,7 @@
     "karma-sauce-launcher": "^4.1.2",
     "karma-tap": "^4.2.0",
     "karma-tap-pretty-reporter": "^4.2.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "prettier": "^2.0.4",
     "rollup": "^2.4.0",
     "rollup-plugin-babel": "^4.4.0",
